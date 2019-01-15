@@ -40,3 +40,18 @@ eg ```ggplot(get_data(), aes())```
 * Subsetting a reactive function that returns a table/vector can be done with [] as if it were a simple dataset
 * Reactive values (the result of a reactive function) must be used in a reactive context (eg. in a render* function). Shiny error of "Operation not allowed without an active reactive context"
 * movies_07.R
+* Side effects include: drawing a plot, saving a file, etc... Anything that isn't returning a value
+* reactiveValues(): creates a reactive list, any elements thereof become reactive themselves and if changed any reference to that value will be changed later on. Must be used in a reactive context  
+```
+rv <- reactiveValue(x=10, y = "test")
+paste("The value of x is:", rv$x, "and y contains:", rv$y)
+# Fake render: The value of x is: 10 and y contains: test
+
+rv$x <- 20
+rv$y <- "another phrase"
+rv$z <- "a new variable that becomes reactive"
+# Fake render updates to the new results
+```
+*  Explanation of observe/reactive [here](https://stackoverflow.com/questions/39436713/r-shiny-reactivevalues-vs-reactive)
+
+#### Observers and Side Effects:
