@@ -69,7 +69,17 @@ movies_12.R exercise: plot title changes don't result in changes to the sampled 
 
 * Rows and columns using fluidRow() and then column()
 * 12 columns per page
+* withTags()
+* includeHTML()
+* backticks around nonstandard attribute names  
+`attr` = value
+* ui_03/4
 
+### Advanced Reactivity
+* Observers: side effects - counting, saving, making notes
+* Reactives return cached values unless something changes. Functions run each time
+* observeEvent() - ignores reverse dependencies and only relies on changes in the first argument
+* eventReactive(EVENTTOOBSERVE) - EVENT can be a c() vector of inputs to monitor! "OR": see cranlogs.R
 
 
 ## Ideas to Run With
@@ -78,3 +88,4 @@ movies_12.R exercise: plot title changes don't result in changes to the sampled 
 * shinyjs - alerts/popups etc... JS functionality in shiny
 * Shiny BS/toastr/dashboard/themes
 * See movies_12.R for how to add theme selector widget in a permanent way to the app
+* reactiveFileReader / reactivePoll

@@ -8,8 +8,10 @@ library(shiny)
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
-      textInput("packages", "Package names (comma separated)"),
-      actionButton("update", "Update")
+      textInput("packages", "Package names (comma separated)", value ="shiny"),
+      actionButton("update", "Update"),
+      br(), br(),
+      dateRangeInput("dates", label = "Date Range", start = "2016-01-01", end = "2019-01-01")
     ),
     mainPanel(
       plotOutput("plot")
@@ -26,10 +28,10 @@ server <- function(input, output, session) {
   })
   
   # Daily downloads
-  daily_downloads <- reactive({
+  daily_downloads <- eventReactive(c(input$update, input$dates), { # Vector of conditions!
     cranlogs::cran_downloads(
       packages = packages(),
-      from = "2016-01-01", to = "2016-12-31"
+      from = input$dates[1], to = input$dates[2]
     )
   })
   
@@ -40,6 +42,7 @@ server <- function(input, output, session) {
       group_by(date, package) %>%
       summarise(count = sum(count))
   })
+  
   
   # Plot weekly downloads, plus trendline
   output$plot <- renderPlot({

@@ -1,6 +1,7 @@
 library(shiny)
 
 # Define UI for YouTube player --------------------------------------
+# Won't render properly in preview window
 ui <- fluidPage(
   div(class = "thumbnail",
     div(class = "embed-responsive embed-responsive-16by9",
