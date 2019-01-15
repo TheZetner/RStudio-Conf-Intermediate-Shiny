@@ -13,8 +13,21 @@ ui <- fluidPage(
 
 # Define server logic -----------------------------------------------
 server <- function(input, output, session) {
+  #rv <- list(x=5)
+  rv <- reactiveValues(x=0)
+  
   output$value <- renderText({
-    0
+    rv$x
+  })
+  
+  observeEvent(input$increment,{
+    rv$x <- rv$x+1
+  })
+  observeEvent(input$decrement,{
+    rv$x <- rv$x-1
+  })
+  observeEvent(input$reset,{
+    rv$x <- 0
   })
 }
 

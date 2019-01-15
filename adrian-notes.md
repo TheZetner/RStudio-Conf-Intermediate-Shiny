@@ -80,9 +80,12 @@ movies_12.R exercise: plot title changes don't result in changes to the sampled 
 * Reactives return cached values unless something changes. Functions run each time
 * observeEvent() - ignores reverse dependencies and only relies on changes in the first argument
 * eventReactive(EVENTTOOBSERVE) - EVENT can be a c() vector of inputs to monitor! "OR": see cranlogs.R
+* Added a jquery setup to run the update button on pressing enter in cranlogs-enterpress.R
 
-
-## Ideas to Run With
+## Appendix
+### Links
+* [Datacamp course with reactivity](https://s3.amazonaws.com/assets.datacamp.com/production/course_4850/slides/Chapter3.pdf)
+### Ideas to Run With
 * brushedPoints() - selected points on a plot
 * miniUI
 * shinyjs - alerts/popups etc... JS functionality in shiny
