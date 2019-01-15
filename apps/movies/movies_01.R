@@ -32,7 +32,15 @@ ui <- fluidPage(
                               "critics_rating",
                               "audience_rating"
                               ),
-                  selected = "mpaa_rating")
+                  selected = "mpaa_rating"),
+      
+      # Slider input for the transparency of the points
+      sliderInput(inputId = "alpha",
+                  label = "Transparency Adjust:",
+                  min = 0, 
+                  max = 1, 
+                  value = 0.8, 
+                  animate = TRUE)
     ),
     
     # Output: Show scatterplot --------------------------------------
@@ -48,7 +56,7 @@ server <- function(input, output) {
   # Create scatterplot object the plotOutput function is expecting --
   output$scatterplot <- renderPlot({
     ggplot(data = movies, aes_string(x = input$x, y = input$y, colour = input$z)) +
-      geom_point()
+      geom_point(alpha = input$alpha)
   })
 }
 
