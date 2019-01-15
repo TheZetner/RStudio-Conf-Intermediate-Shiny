@@ -1,6 +1,7 @@
 library(shiny)
 library(ggplot2)
 load("movies.Rdata")
+library(DT)
 
 # Define UI for application that plots features of movies -----------
 ui <- fluidPage(
@@ -40,12 +41,20 @@ ui <- fluidPage(
                   min = 0, 
                   max = 1, 
                   value = 0.8, 
-                  animate = TRUE)
+                  animate = TRUE),
+      
+      #Checkbox to show plotted data i data table instead
+      checkboxInput(inputId = "DTcheck",
+                    label = "Display as table?", 
+                    value = FALSE
+                    )
     ),
     
     # Output: Show scatterplot --------------------------------------
     mainPanel(
-      plotOutput(outputId = "scatterplot")
+      
+      uiOutput(outputId = "variableoutput")
+      
     )
   )
 )
@@ -54,9 +63,18 @@ ui <- fluidPage(
 server <- function(input, output) {
 
   # Create scatterplot object the plotOutput function is expecting --
-  output$scatterplot <- renderPlot({
-    ggplot(data = movies, aes_string(x = input$x, y = input$y, colour = input$z)) +
-      geom_point(alpha = input$alpha)
+  output$variableoutput <- renderUI({
+    if(input$DTcheck){
+      dataTableOutput({
+        DT::datatable(data = movies[, 1:7], 
+                    options = list(pageLength = 10), 
+                    rownames = FALSE)
+      })
+    }else{plotOutput({
+      ggplot(data = movies, aes_string(x = input$x, y = input$y, colour = input$z)) +
+        geom_point(alpha = input$alpha)
+      })
+    }
   })
 }
 

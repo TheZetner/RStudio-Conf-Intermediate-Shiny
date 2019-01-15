@@ -5,6 +5,15 @@
 When would using a two file shiny structure be more appropriate than using app.R?
 * 
 
+#### Basics again
 UI/Server function names are conventions but don't have to be named that
 
 First argument to render functions is all the code needed to create the object contained within the curly braces. 
+
+Movies_04.R has the answer to the DT exercise. DT:: version of render has more options 
+* Issue here with trying to display two different outputs (dt and plot) in the same position as renderUI
+* Probably not the way to do it...
+
+#### File structure
+
+
