@@ -19,6 +19,21 @@ global.R (datasets, helper functions, etc) can be included if using a two-file s
 
 ### Reactive Programming
 #### Reactivity 101
-Monitored input values cause outputs to be updated as they change.
+Monitored input values cause outputs to be updated as they change: invalidates current values, updates dependent variables.
 Started using movies_05.R 
 
+#### Reactive objects
+Source: Input from user (slider, select, checkbox, etc)
+Conductor: 
+* Flow control situated between inputs and outputs
+* Modify input values and pass to multiple outputs
+Endpoint: Output to browser window (plot, table, etc)
+
+#### Reactive functions (conductors)
+* Cached expressions that recognize when their output is out of date and re-runs
+* Name them using verbs as a convention  
+```name <- reactive({expression})```  
+eg. ``` get_data <- reactive({movies[input$selection]})```
+* Used in place of data:  
+eg ```ggplot(get_data(), aes())```
+* Putting reactive functions in a separate file requires the flag local=TRUE when sourcing to ensure they run and react to the right environment
