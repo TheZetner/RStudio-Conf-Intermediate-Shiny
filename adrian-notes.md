@@ -15,5 +15,10 @@ Movies_04.R has the answer to the DT exercise. DT:: version of render has more o
 * Probably not the way to do it...
 
 #### File structure
+global.R (datasets, helper functions, etc) can be included if using a two-file system
 
+### Reactive Programming
+#### Reactivity 101
+Monitored input values cause outputs to be updated as they change.
+Started using movies_05.R 
 

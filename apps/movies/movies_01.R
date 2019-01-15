@@ -53,7 +53,7 @@ ui <- fluidPage(
     # Output: Show scatterplot --------------------------------------
     mainPanel(
       
-      uiOutput(outputId = "variableoutput")
+      ui?conditionalPanelOutput(outputId = "variableoutput")
       
     )
   )
