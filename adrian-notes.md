@@ -61,4 +61,20 @@ rv$z <- "a new variable that becomes reactive"
 * Used because of the side effects
 * Eagerly respond to reactives: execute right away whenever one of its reactive dependencies changes even if that value is not needed immediately by any of its other dependencies.
 * Good example of observer in movies_11.R line 116 running: ```updateNumericInput```
-* 
+
+*Ex.*  
+movies_12.R exercise: plot title changes don't result in changes to the sampled data. This is because the creation of that subsample doesn't rely on the plot title, only the n_samples value.
+
+### Understanding UI
+
+* Rows and columns using fluidRow() and then column()
+* 12 columns per page
+
+
+
+## Ideas to Run With
+* brushedPoints() - selected points on a plot
+* miniUI
+* shinyjs - alerts/popups etc... JS functionality in shiny
+* Shiny BS/toastr/dashboard/themes
+* See movies_12.R for how to add theme selector widget in a permanent way to the app

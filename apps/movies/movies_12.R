@@ -4,10 +4,15 @@ library(DT)
 library(stringr)
 library(dplyr)
 library(tools)
+library(shinythemes)
 load("movies.Rdata")
 
 # Define UI for application that plots features of movies -----------
 ui <- fluidPage(
+  
+  # Theming
+  # shinythemes::themeSelector(),  # <--- Add this somewhere in the UI
+  theme = shinytheme("readable"),
   
   # Application title -----------------------------------------------
   titlePanel("Movie browser"),
@@ -83,7 +88,39 @@ ui <- fluidPage(
       numericInput(inputId = "n_samp", 
                    label = "Sample size:", 
                    min = 1, max = nrow(movies), 
-                   value = 50)
+                   value = 50),
+      
+      selectInput("shinytheme-selector", "Choose a theme",
+                  c("default", shinythemes:::allThemes()),
+                  selectize = FALSE
+      ),
+    tags$script(
+      "$('#shinytheme-selector')
+      .on('change', function(el) {
+      var allThemes = $(this).find('option').map(function() {
+      if ($(this).val() === 'default')
+      return 'bootstrap';
+      else
+      return $(this).val();
+      });
+      // Find the current theme
+      var curTheme = el.target.value;
+      if (curTheme === 'default') {
+      curTheme = 'bootstrap';
+      curThemePath = 'shared/bootstrap/css/bootstrap.min.css';
+      } else {
+      curThemePath = 'shinythemes/css/' + curTheme + '.min.css';
+      }
+      // Find the <link> element with that has the bootstrap.css
+      var $link = $('link').filter(function() {
+      var theme = $(this).attr('href');
+      theme = theme.replace(/^.*\\//, '').replace(/(\\.min)?\\.css$/, '');
+      return $.inArray(theme, allThemes) !== -1;
+      });
+      // Set it to the correct path
+      $link.attr('href', curThemePath);
+      });"
+    )
     ),
     
     # Output: -------------------------------------------------------
@@ -95,6 +132,9 @@ ui <- fluidPage(
       
       # Print number of obs plotted ---------------------------------
       uiOutput(outputId = "n"),
+      br(), br(),    # a little bit of visual separation
+      
+      verbatimTextOutput("printinfo"),
       br(), br(),    # a little bit of visual separation
 
       # Show data table ---------------------------------------------
@@ -159,7 +199,52 @@ server <- function(input, output, session) {
                     rownames = FALSE)
     }
   )
+  
+  # Testing
+  output$printinfo <- renderPrint({
+    str(session)
+  })
 }
+
+
+themeSelector <- function() {
+  div(
+    div(
+      selectInput("shinytheme-selector", "Choose a theme",
+                  c("default", shinythemes:::allThemes()),
+                  selectize = FALSE
+      )
+    ),
+    tags$script(
+      "$('#shinytheme-selector')
+      .on('change', function(el) {
+      var allThemes = $(this).find('option').map(function() {
+      if ($(this).val() === 'default')
+      return 'bootstrap';
+      else
+      return $(this).val();
+      });
+      // Find the current theme
+      var curTheme = el.target.value;
+      if (curTheme === 'default') {
+      curTheme = 'bootstrap';
+      curThemePath = 'shared/bootstrap/css/bootstrap.min.css';
+      } else {
+      curThemePath = 'shinythemes/css/' + curTheme + '.min.css';
+      }
+      // Find the <link> element with that has the bootstrap.css
+      var $link = $('link').filter(function() {
+      var theme = $(this).attr('href');
+      theme = theme.replace(/^.*\\//, '').replace(/(\\.min)?\\.css$/, '');
+      return $.inArray(theme, allThemes) !== -1;
+      });
+      // Set it to the correct path
+      $link.attr('href', curThemePath);
+      });"
+    )
+  )
+}
+
 
 # Run the application -----------------------------------------------
 shinyApp(ui = ui, server = server)
