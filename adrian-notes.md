@@ -31,6 +31,8 @@ Endpoint: Output to browser window (plot, table, etc)
 
 #### Reactive functions (conductors)
 * Cached expressions that recognize when their output is out of date and re-runs
+* Return a value
+* Lazy response: only executed when it is called by one of its dependents
 * Name them using verbs as a convention  
 ```name <- reactive({expression})```  
 eg. ``` get_data <- reactive({movies[input$selection]})```
@@ -55,3 +57,8 @@ rv$z <- "a new variable that becomes reactive"
 *  Explanation of observe/reactive [here](https://stackoverflow.com/questions/39436713/r-shiny-reactivevalues-vs-reactive)
 
 #### Observers and Side Effects:
+* Does not return a value
+* Used because of the side effects
+* Eagerly respond to reactives: execute right away whenever one of its reactive dependencies changes even if that value is not needed immediately by any of its other dependencies.
+* Good example of observer in movies_11.R line 116 running: ```updateNumericInput```
+* 

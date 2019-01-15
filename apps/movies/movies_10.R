@@ -122,7 +122,7 @@ server <- function(input, output) {
   })
   
   # Convert plot_title toTitleCase ----------------------------------
-  output$pretty_plot_title <- toTitleCase(input$plot_title)
+  pretty_plot_title <- reactive({toTitleCase(input$plot_title)})
   
   # Create scatterplot object the plotOutput function is expecting --
   output$scatterplot <- renderPlot({
@@ -132,7 +132,7 @@ server <- function(input, output) {
       labs(x = toTitleCase(str_replace_all(input$x, "_", " ")),
            y = toTitleCase(str_replace_all(input$y, "_", " ")),
            color = toTitleCase(str_replace_all(input$z, "_", " ")),
-           title = output$pretty_plot_title
+           title = pretty_plot_title()
       )
   })
   
