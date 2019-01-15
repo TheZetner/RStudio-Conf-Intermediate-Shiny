@@ -121,11 +121,13 @@ server <- function(input, output) {
   })
   
   # Print data table if checked -------------------------------------
+  
+  
   output$moviestable <- DT::renderDataTable(
     if(input$show_data){
-      DT::datatable(data = movies[, 1:7], 
+      DT::datatable(data = movies_subset()[, 1:7], 
                     options = list(pageLength = 10), 
-                    rownames = FALSE)
+                    rownames = FALSE, editable = TRUE)
     }
   )
 }

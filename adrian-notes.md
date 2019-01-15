@@ -37,3 +37,5 @@ eg. ``` get_data <- reactive({movies[input$selection]})```
 * Used in place of data:  
 eg ```ggplot(get_data(), aes())```
 * Putting reactive functions in a separate file requires the flag local=TRUE when sourcing to ensure they run and react to the right environment
+* Subsetting a reactive function that returns a table/vector can be done with [] as if it were a simple dataset
+* Reactive values (the result of a reactive function) must be used in a reactive context (eg. in a render* function). Shiny error of "Operation not allowed without an active reactive context"
