@@ -30,15 +30,19 @@ server <- function(input, output, session) {
   data <- reactive({
     req(nrow(rv$data) > 0)
     rv$data
-  })
+  }) %>% debounce(750) # Add cooldown to only update after a number of clicks
+  
+  # Could also create a specific debounced reactive with '<- debounce(data, 750)'
   
   # Summarize data
   output$summary <- renderPrint({
+    
     # Insert artificial slowness
     on.exit(Sys.sleep(1))
     
+    # summary(rv$data) # Why not use this? Or was that simply to demonstrate debounce?
     summary(data())
-  })
+  }) # %>% debounce(750) - this is incorrect as the slow behaviour still manifests
 }
 
 # Run the app -------------------------------------------------------

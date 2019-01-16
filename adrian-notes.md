@@ -82,6 +82,40 @@ movies_12.R exercise: plot title changes don't result in changes to the sampled 
 * eventReactive(EVENTTOOBSERVE) - EVENT can be a c() vector of inputs to monitor! "OR": see cranlogs.R
 * Added a jquery setup to run the update button on pressing enter in cranlogs-enterpress.R Added the same functionality to cranlogs.R
 
+
+## Day 2
+
+### Advanced reactivity 2
+Isolate: enforces that the isolated reactive variables retain their original values and don't update.
+
+#### Checking preconditions
+* validate() and need() - allow feedback to errors
+* Truthy - 
+* Input variable can be list of lists
+  * eg ```input$file$filepath```
+* Dynamic.R has important demonstration of the importance of 
+
+#### Timing
+* invalidatelater(time in ms) - causes to rerun the reactive code regularly
+* Pass a reactive to these functions with a pipe to rate limit:
+  * debounce(x, ms) - prevents updating until a certain amount of time has passed 
+  * throttle(x, ms) - prevents a reactive from updating more often than Xms
+* points.R - debounce to update plot early then summarize later.
+
+### Modules
+* Standalone shiny app pieces able to be connected together to make an app
+* Reuse code instead of copying and pasting everywhere
+* Can be bundled into packages
+* Unique namespaces so variable names can be reused.
+* NS()
+  * Prepend namespace to all inputs / output ids
+  * ns(input$var), ns(output$var)
+* taglist(...) collects UI elements to pass back to the main app
+* Server function
+  * 
+
+
+
 ## Appendix
 ### Links
 * [Datacamp course with reactivity](https://s3.amazonaws.com/assets.datacamp.com/production/course_4850/slides/Chapter3.pdf)

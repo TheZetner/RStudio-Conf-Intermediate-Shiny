@@ -13,7 +13,8 @@ ui <- fluidPage(
 
 # Define server logic -----------------------------------------------
 server <- function(input, output, session) {
-  #rv <- list(x=5)
+  #rv <- list(x=5) # To prove this has to be reactive
+  
   rv <- reactiveValues(x=0)
   
   output$value <- renderText({
