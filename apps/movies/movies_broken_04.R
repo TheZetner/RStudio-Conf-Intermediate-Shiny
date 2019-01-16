@@ -111,7 +111,7 @@ server <- function(input, output, session) {
   })
 
   # Scatterplot for features ----------------------------------------
-  output$scatterplot_feature <- renderPlot({
+  output$scatterplot_features <- renderPlot({
     ggplot(data = features(), aes_string(x = input$x, y = input$y, color = input$z)) +
       geom_point(alpha = input$alpha, size = input$size) +
       labs(x = toTitleCase(str_replace_all(input$x, "_", " ")),
@@ -140,7 +140,7 @@ server <- function(input, output, session) {
   )
 
   # Table for features ----------------------------------------------
-  output$moviestable_feature <- DT::renderDataTable(
+  output$moviestable_features <- DT::renderDataTable(
     if(input$show_data){
       DT::datatable(data = features()[, 1:7],
                     options = list(pageLength = 10),

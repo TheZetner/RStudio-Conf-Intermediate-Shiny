@@ -72,7 +72,7 @@ ui <- fluidPage(
       HTML("<br>"),        # a little bit of visual separation
       
       # Print number of obs plotted -------------------------------------------
-      textOutput(outputId = "n"),
+      uiOutput(outputId = "n"),
       HTML("<br><br>"),    # a little bit of visual separation
       
       # Show data table -------------------------------------------------------
@@ -119,14 +119,24 @@ server <- function(input, output, session) {
   })
   
   # Print number of movies plotted --------------------------------------------
-  output$n <- renderText({
-    counts <- movies_sample() %>%
-      group_by(title_type) %>%
-      summarise(count = n()) %>%
-      select(count) %>%
-      unlist()
-    paste("There are", counts, input$selected_type, "movies in this dataset.")
+  # output$n <- renderText({
+  #   counts <- movies_sample() %>%
+  #     group_by(title_type) %>%
+  #     summarise(count = n()) %>%
+  #     select(count) %>%
+  #     unlist()
+  #   paste("There are", counts, input$selected_type, "movies in this dataset.")
+  # })
+  
+  output$n <- renderUI({
+    types <- movies_sample()$title_type %>%
+      factor(levels = input$selected_type)
+    counts <- table(types)
+    HTML(paste("There are",
+               counts, input$selected_type,
+               "movies in this dataset. <br>"))
   })
+  
   
   # Print data table if checked -----------------------------------------------
   output$moviestable <- DT::renderDataTable(

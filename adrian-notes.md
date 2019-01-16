@@ -136,9 +136,18 @@ Isolate: enforces that the isolated reactive variables retain their original val
 
 ### Troubleshooting
 * Read Later
+* Common Errors:
+  * 'object of type closure': Reactive called without 
+  * unexpected symbol, argument etc - missing comma
+  * Active reactive context - Tried to access an input or a reactive function from inside the server function not a reactive 
 
 ### Debugging Tools
-* 
+* logjs - output messages to browser JS console
+* browser() - jumps into R console and allows for examining variables etc
+* Options:
+  * shiny.trace=T - logs messages from shiny app
+  * shiny.fullstacktrace - gives full errors
+* Automatic testing isn't really possible: write components outside Shiny and then importing after helps to prevent
 
 ## Appendix
 ### Links

@@ -122,7 +122,7 @@ server <- function(input, output, session) {
 
   # Scatterplot for tvs ---------------------------------------------
   output$scatterplot_tv <- renderPlot({
-    ggplot(data = tvs(), aes_string(x = input$x, y = input$y, color = input$z))
+    ggplot(data = tvs(), aes_string(x = input$x, y = input$y, color = input$z)) +
       geom_point(alpha = input$alpha, size = input$size) +
       labs(x = toTitleCase(str_replace_all(input$x, "_", " ")),
            y = toTitleCase(str_replace_all(input$y, "_", " ")),

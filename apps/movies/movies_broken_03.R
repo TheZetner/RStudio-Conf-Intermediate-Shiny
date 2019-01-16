@@ -133,7 +133,7 @@ server <- function(input, output, session) {
   # Table for docs --------------------------------------------------
   output$moviestable_doc <- DT::renderDataTable(
     if(input$show_data){
-      DT::datatable(data = docs[, 1:7],
+      DT::datatable(data = docs()[, 1:7],
                     options = list(pageLength = 10),
                     rownames = FALSE)
     }
@@ -142,7 +142,7 @@ server <- function(input, output, session) {
   # Table for features ----------------------------------------------
   output$moviestable_feature <- DT::renderDataTable(
     if(input$show_data){
-      DT::datatable(data = features[, 1:7],
+      DT::datatable(data = features()[, 1:7],
                     options = list(pageLength = 10),
                     rownames = FALSE)
     }
@@ -151,7 +151,7 @@ server <- function(input, output, session) {
   # Table for tvs ---------------------------------------------------
   output$moviestable_tv <- DT::renderDataTable(
     if(input$show_data){
-      DT::datatable(data = tvs[, 1:7],
+      DT::datatable(data = tvs()[, 1:7],
                     options = list(pageLength = 10),
                     rownames = FALSE)
     }

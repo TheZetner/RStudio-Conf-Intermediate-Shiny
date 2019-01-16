@@ -25,7 +25,7 @@ ui <- fluidPage(
                               "Critics Score" = "critics_score",
                               "Audience Score" = "audience_score",
                               "Runtime" = "runtime"),
-                  selected = "audience_score")
+                  selected = "audience_score"),
 
       # Select variable for x-axis ----------------------------------
       selectInput(inputId = "x",
@@ -35,7 +35,7 @@ ui <- fluidPage(
                               "Critics Score" = "critics_score",
                               "Audience Score" = "audience_score",
                               "Runtime" = "runtime"),
-                  selected = "critics_score")
+                  selected = "critics_score"),
 
       # Select variable for color -----------------------------------
       selectInput(inputId = "z",
@@ -44,19 +44,19 @@ ui <- fluidPage(
                               "MPAA Rating" = "mpaa_rating",
                               "Critics Rating" = "critics_rating",
                               "Audience Rating" = "audience_rating"),
-                  selected = "mpaa_rating")
+                  selected = "mpaa_rating"),
 
       # Set alpha level ---------------------------------------------
       sliderInput(inputId = "alpha",
                   label = "Alpha:",
                   min = 0, max = 1,
-                  value = 0.5)
+                  value = 0.5),
 
       # Set point size ----------------------------------------------
       sliderInput(inputId = "size",
                   label = "Size:",
                   min = 0, max = 5,
-                  value = 2)
+                  value = 2),
 
       # Show data table ---------------------------------------------
       checkboxInput(inputId = "show_data",
