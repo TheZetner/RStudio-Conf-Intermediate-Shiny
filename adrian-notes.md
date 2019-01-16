@@ -80,7 +80,7 @@ movies_12.R exercise: plot title changes don't result in changes to the sampled 
 * Reactives return cached values unless something changes. Functions run each time
 * observeEvent() - ignores reverse dependencies and only relies on changes in the first argument
 * eventReactive(EVENTTOOBSERVE) - EVENT can be a c() vector of inputs to monitor! "OR": see cranlogs.R
-* Added a jquery setup to run the update button on pressing enter in cranlogs-enterpress.R
+* Added a jquery setup to run the update button on pressing enter in cranlogs-enterpress.R Added the same functionality to cranlogs.R
 
 ## Appendix
 ### Links

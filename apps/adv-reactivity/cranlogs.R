@@ -6,6 +6,14 @@ library(shiny)
 
 # Define UI for specifying package and plotting cranlogs ------------
 ui <- fluidPage(
+  tags$script(HTML(
+    "$(document).keyup(function(event) {
+      if ($('#packages').is(':focus') && (event.keyCode == 13)) {
+          $('#update').click();
+      }
+    });
+    $('#update').hide();"
+  )),
   sidebarLayout(
     sidebarPanel(
       textInput("packages", "Package names (comma separated)", value ="shiny"),
