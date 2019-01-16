@@ -24,8 +24,9 @@ server <- function(input, output, session) {
   onRestore(function(state) {
     vals$sum <- state$values$currentSum
   })
+  # setBookmarkExclude("add") this is the given solution, I did ignoreInit
 
-  observeEvent(input$add, {
+  observeEvent(input$add, ignoreInit = T, {
     vals$sum <- vals$sum + input$n
   })
   output$sum <- renderText({
@@ -34,4 +35,4 @@ server <- function(input, output, session) {
 }
 
 # Run the app -------------------------------------------------------
-shinyApp(ui, server, enableBookmarking = "url")
+shinyApp(ui, server, enableBookmarking = "server")

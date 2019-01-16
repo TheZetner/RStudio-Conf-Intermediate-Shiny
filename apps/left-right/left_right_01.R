@@ -38,8 +38,26 @@ dataset_summarizer_UI <- function(id) {
 dataset_summarizer <- function(input, output, session, dataset, count) {
   output$summary <- renderPrint({
     summary(head(dataset(), count()))
+    
+    # paste("The mean of", colnames(dataset())[1], "is", mean(dataset()[,1]))
+    # paste("The mean of", colnames(dataset())[2], "is", mean(dataset()[,2]))
   })
+  # Make a list output for the means
 }
+
+# Module 3 UI
+dataset_plotter_UI <- function(id) {
+  ns <- NS(id)
+  tagList(
+    
+    
+  )
+}
+
+dataset_plotter <- function(input, output, session) {
+  
+}
+# Module 3 Server
 
 # App combining Module 1 and Module 2 -----------------------------------------
 

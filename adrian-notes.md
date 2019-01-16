@@ -101,20 +101,44 @@ Isolate: enforces that the isolated reactive variables retain their original val
   * debounce(x, ms) - prevents updating until a certain amount of time has passed 
   * throttle(x, ms) - prevents a reactive from updating more often than Xms
 * points.R - debounce to update plot early then summarize later.
+* shinySignals
 
 ### Modules
 * Standalone shiny app pieces able to be connected together to make an app
 * Reuse code instead of copying and pasting everywhere
 * Can be bundled into packages
-* Unique namespaces so variable names can be reused.
-* NS()
+* Use the [shinymod](https://gist.github.com/jcheng5/c09a2449c0a94c8f498c4a68a416bc3b) [snippet](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets)
+* UI:
+  * Unique namespaces so variable names can be reused.
+  * NS()
   * Prepend namespace to all inputs / output ids
   * ns(input$var), ns(output$var)
-* taglist(...) collects UI elements to pass back to the main app
+  * taglist(...) collects UI elements to pass back to the main app
+  * Has it's own input/output values that aren't shared with the main app: why all the inputs must be passed to the module
 * Server function
-  * 
+  * Does not require the ns() function
+  * Treat inputs and outputs as normal
+  * Add data inputs beyond UI after session
+* Passing data into modules
+ * Static values follow session in the call
+ * Reactives:
+   * pass in as a reference (no '()') to preserve reactivity
+   * pass in a reactive input wrapped as a new reactive expression ```reactive(input$var)```
+     * Use it as a new reactive expr: var()
+* Returning data from a module 
+ * This was blazed over and will have to be learned on your own.
+* 
 
+### Bookmarking
+* Save state of application between sessions that can be shared between users: Not actually saving state but saving state of all the inputs
+* The doBookmark() function takes an id as argument
+* Ignoreinit in observe event
 
+### Troubleshooting
+* Read Later
+
+### Debugging Tools
+* 
 
 ## Appendix
 ### Links
