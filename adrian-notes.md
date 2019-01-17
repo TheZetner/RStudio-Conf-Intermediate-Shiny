@@ -149,9 +149,19 @@ Isolate: enforces that the isolated reactive variables retain their original val
   * shiny.fullstacktrace - gives full errors
 * Automatic testing isn't really possible: write components outside Shiny and then importing after helps to prevent
 
+### Dashboards
+* shinydashboard
+* flexdashboard: Rmd based
+
 ## Appendix
 ### Links
 * [Datacamp course with reactivity](https://s3.amazonaws.com/assets.datacamp.com/production/course_4850/slides/Chapter3.pdf)
+* [Databases](https://db.rstudio.com/dplyr/)
+* [Crosstalk](https://rstudio.github.io/crosstalk/)
+* [Profiling Apps](https://shiny.rstudio.com/articles/profiling.html)
+* 
+
+
 ### Ideas to Run With
 * brushedPoints() - selected points on a plot
 * miniUI
