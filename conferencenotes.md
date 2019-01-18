@@ -93,4 +93,4 @@ Slides
      * Don't Repeat Yourself
      * KISS
 * Consistent coding style
-* 
+* github: [ajmcoqui](https://github.com/ajmcoqui)
